@@ -97,7 +97,7 @@
                     {"Number of Vehicles": "0-1000000000"}
                 ],
                 "format_check": {
-                    "Data Year": "r'^\\d{4}$'"
+                    "Data Year": "^\\d{4}$"
                 },
                 "value_check": {
                     "County": [
