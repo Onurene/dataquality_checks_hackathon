@@ -1,6 +1,6 @@
 [
     {
-        "dataset": "UK Renewable Energy Consumption Dataset (Path)",
+        "dataset": "https://www.kaggle.com/datasets/magnussesodia/uk-renewable-energy-production",
         "checks": [
             {
                 "range_check": {
@@ -18,7 +18,7 @@
         ]
     },
     {
-        "dataset": "EV Charging Station Usage of California City (Path)",
+        "dataset": "https://www.kaggle.com/datasets/venkatsairo4899/ev-charging-station-usage-of-california-city/data",
         "checks": [
             {
                 "format_check": {
@@ -53,7 +53,7 @@
         ]
     },
     {
-        "dataset": "Zero Emission Vehicle Population in California (Path)",
+        "dataset": "https://www.kaggle.com/datasets/natalyamatyushenko/zero-emission-vehicle-population-in-california",
         "checks": [
             {
                 "range_check": [
@@ -139,7 +139,7 @@
         ]
     },
     {
-        "dataset": "Global Data on Sustainable Energy (2000-2020) (Path)",
+        "dataset": "https://www.kaggle.com/datasets/anshtanwar/global-data-on-sustainable-energy ",
         "checks": [
             {
                 "range_check": [
@@ -423,7 +423,7 @@
         ]
     },
     {
-        "dataset": "Exposure to water stress",
+        "dataset": "https://www.kaggle.com/datasets/usmanlovescode/world-agricultural-exposure-to-water-stress-data",
         "checks": [
             {
                 "indicator_check": {
