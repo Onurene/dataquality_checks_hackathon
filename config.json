@@ -1,39 +1,38 @@
 [
     {
-        "dataset": "uk_renewable_energy.csv",
+        "dataset": "uk-renewable-energy.csv",
         "checks": [
             {
                 "range_check": {
-                    "Year": "1990-2020",
-                    "unique renewable resources": "15-16"
+                    "Year": "1990-2020"
                 },
                 "null_check": [
                     "Total energy consumption of primary fuels and equivalents",
                     "Fraction from renewable sources and waste"
                 ],
                 "percentage_check": {
-                    "%_of_nulls": "(nulls)/(total entries)"
+                    "%_of_errors": "(errors)/(total entries)"
                 }
             }
         ]
     },
     {
-        "dataset": "EVChargingStationUsage.csv",
+        "dataset": "EV-chargingStation-usage.csv",
         "checks": [
             {
                 "format_check": {
-                    "MAC Address": "MM:MM:MM:SS:SS:SS",
-                    "Start Date": "mm/dd/yyyy hh:mm",
-                    "End Date": "mm/dd/yyyy hh:mm",
-                    "Total Duration (hh:mm:ss)": "hh:mm:ss",
-                    "Charging Time (hh:mm:ss)": "hh:mm:ss"
+                    "MAC Address": "r'^([0-9A-F]{4}:){3}[0-9A-F]{4}$'",
+                    "Start Date": "r'^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/\\d{4} (0\\d|1[0-2]):([0-5]\\d)$'",
+                    "End Date": "r'^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/\\d{4} (0\\d|1[0-2]):([0-5]\\d)$'",
+                    "Total Duration (hh:mm:ss)": "r'^([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d$'",
+                    "Charging Time (hh:mm:ss)": "r'^([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d$'"
                 },
                 "value_check": {
-                    "Start Time Zone": ["PST", "PDT"],
-                    "End Time Zone": ["PST", "PDT"],
+                    "Start Time Zone": ["PST", "PDT", "UTC"],
+                    "End Time Zone": ["PST", "PDT", "UTC"],
                     "Postal Code": "94301",
                     "Currency": "USD",
-                    "Org Name": "City of Palo Alto"
+                    "Org Name": ["City of Palo Alto", "City of Palo Alto "]
                 },
                 "null_check": [
                     "MAC Address",
@@ -55,7 +54,9 @@
                     {"Number of Vehicles": "0-1000000000"}
                 ],
                 "format_check": {
-                    "Data Year": "yyyy",
+                    "Data Year": "r'^\\d{4}$'"
+                },
+                "value_check": {
                     "County": [
                         "Alameda",
                         "Alpine",
@@ -125,7 +126,7 @@
                     "Manufacturer"
                 ],
                 "percentage_check": {
-                    "%_of_nulls": "(nulls)/(total entries)"
+                    "%_of_errors": "(errors)/(total entries)"
                 }
             }
         ]
@@ -409,7 +410,7 @@
                     "num_of_nulls": "total num of nulls"
                 },
                 "percentage_check": {
-                    "%_of_nulls": "(nulls)/(total entries)"
+                    "%_of_errors": "(errors)/(total entries)"
                 }
             }
         ]
