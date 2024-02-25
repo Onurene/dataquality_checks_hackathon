@@ -1,6 +1,6 @@
 [
     {
-        "dataset": "https://www.kaggle.com/datasets/magnussesodia/uk-renewable-energy-production",
+        "dataset": "uk_renewable_energy.csv",
         "checks": [
             {
                 "range_check": {
@@ -18,7 +18,7 @@
         ]
     },
     {
-        "dataset": "https://www.kaggle.com/datasets/venkatsairo4899/ev-charging-station-usage-of-california-city/data",
+        "dataset": "EVChargingStationUsage.csv",
         "checks": [
             {
                 "format_check": {
@@ -28,17 +28,11 @@
                     "Total Duration (hh:mm:ss)": "hh:mm:ss",
                     "Charging Time (hh:mm:ss)": "hh:mm:ss"
                 },
-                "timezone_check": {
+                "value_check": {
                     "Start Time Zone": ["PST", "PDT"],
-                    "End Time Zone": ["PST", "PDT"]
-                },
-                "postcode_check": {
-                    "Postal Code": "94301"
-                },
-                "currency_check": {
-                    "Currency": "USD"
-                },
-                "org_name_check": {
+                    "End Time Zone": ["PST", "PDT"],
+                    "Postal Code": "94301",
+                    "Currency": "USD",
                     "Org Name": "City of Palo Alto"
                 },
                 "null_check": [
@@ -53,7 +47,7 @@
         ]
     },
     {
-        "dataset": "https://www.kaggle.com/datasets/natalyamatyushenko/zero-emission-vehicle-population-in-california",
+        "dataset": "zero-emission-vehicle-population-ca.csv",
         "checks": [
             {
                 "range_check": [
@@ -61,9 +55,7 @@
                     {"Number of Vehicles": "0-1000000000"}
                 ],
                 "format_check": {
-                    "Data Year": "yyyy"
-                },
-                "county_check": {
+                    "Data Year": "yyyy",
                     "County": [
                         "Alameda",
                         "Alpine",
@@ -139,7 +131,7 @@
         ]
     },
     {
-        "dataset": "https://www.kaggle.com/datasets/anshtanwar/global-data-on-sustainable-energy ",
+        "dataset": "global-data-on-sustainable-energy.csv",
         "checks": [
             {
                 "range_check": [
@@ -160,7 +152,7 @@
                     "Renewable-electricity-generating-capacity-per-capita",
                     "Access to electricity (% of population)"
                 ],
-                "entity_check": {
+                "value_check": {
                     "Entity": [
                         "Afghanistan",
                         "Åland Islands",
@@ -423,22 +415,18 @@
         ]
     },
     {
-        "dataset": "https://www.kaggle.com/datasets/usmanlovescode/world-agricultural-exposure-to-water-stress-data",
+        "dataset": "agricultural-exposure-to-water-stress.csv",
         "checks": [
             {
-                "indicator_check": {
+                "value_check": {
                     "INDICATOR": [
                         "Low (<10%)",
                         "Low to medium (10-20%)",
                         "Medium to high (20-40%)",
                         "High (40-80%)",
                         "Extremely high (>80%)"
-                    ]
-                },
-                "frequency_check": {
-                    "FREQ": "Annual"
-                },
-                "time_format_check": {
+                    ],
+                    "FREQ": "Annual",
                     "TIME_FORMAT": "Annual"
                 }
             }
