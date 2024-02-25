@@ -17,7 +17,7 @@
         ]
     },
     {
-        "dataset": "EV-chargingStation-usage.csv",
+        "dataset": "EV-charging-station-usage.csv",
         "checks": [
             {
                 "format_check": {
