@@ -1,6 +1,6 @@
 [
     {
-        "dataset": "uk-renewable-energy.csv",
+        "dataset": "uk_renewable_energy.csv",
         "checks": [
             {
                 "range_check": {
@@ -10,29 +10,57 @@
                     "Total energy consumption of primary fuels and equivalents",
                     "Fraction from renewable sources and waste"
                 ],
-                "percentage_check": {
+                "total_number_nulls": {
+                    "num_of_nulls": "total num of nulls"
+                },
+                "total_error_percentage": {
                     "%_of_errors": "(errors)/(total entries)"
-                }
+                },
+                "total_value_nulls": {
+                    "num_of_val_errors": "total num of value errors"
+                },
+                "total_format_nulls": {
+                    "num_of_format_errors": "total num of format errors"
+                },
+                "total_number_errors": {
+                    "num_of_errors": "total num of errors"
+            }
             }
         ]
     },
     {
-        "dataset": "EV-charging-station-usage.csv",
+        "dataset": "EVChargingStationUsage.csv",
         "checks": [
             {
                 "format_check": {
-                    "MAC Address": "r'^([0-9A-F]{4}:){3}[0-9A-F]{4}$'",
-                    "Start Date": "r'^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/\\d{4} (0\\d|1[0-2]):([0-5]\\d)$'",
-                    "End Date": "r'^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/\\d{4} (0\\d|1[0-2]):([0-5]\\d)$'",
-                    "Total Duration (hh:mm:ss)": "r'^([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d$'",
-                    "Charging Time (hh:mm:ss)": "r'^([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d$'"
+                    "MAC Address": "^([0-9A-F]{4}:){3}[0-9A-F]{4}$"
                 },
                 "value_check": {
-                    "Start Time Zone": ["PST", "PDT", "UTC"],
-                    "End Time Zone": ["PST", "PDT", "UTC"],
-                    "Postal Code": "94301",
-                    "Currency": "USD",
-                    "Org Name": ["City of Palo Alto", "City of Palo Alto "]
+                    "Start Time Zone": [
+                        "PST",
+                        "PDT",
+                        "UTC"
+                    ],
+                    "End Time Zone": [
+                        "PST",
+                        "PDT",
+                        "UTC"
+                    ],
+                    "Postal Code": [
+                        "94301",
+                        "94306",
+                        "94303"
+                    ],
+                    "Currency": [
+                        "USD",
+                        "MXN",
+                        "EUR",
+                        "CAD"
+                    ],
+                    "Org Name": [
+                        "City of Palo Alto",
+                        "City of Palo Alto "
+                    ]
                 },
                 "null_check": [
                     "MAC Address",
@@ -41,12 +69,27 @@
                     "County",
                     "Model Number",
                     "System S/N"
-                ]
+                ],
+                "total_null_errors": {
+                    "num_of_nulls": "total num of nulls"
+                },
+                "total_error_percentage": {
+                    "%_of_errors": "(errors)/(total entries)"
+                },
+                "total_value_errors": {
+                    "num_of_val_errors": "total num of value errors"
+                },
+                "total_format_errors": {
+                    "num_of_format_errors": "total num of format errors"
+                },
+                "total_number_errors": {
+                    "num_of_errors": "total num of errors"
+                }
             }
         ]
-    },
+            } ,
     {
-        "dataset": "zero-emission-vehicle-population-ca.csv",
+        "dataset": "Energy_Commission_Zero_Emission_Vehicle_Population_in_California.csv",
         "checks": [
             {
                 "range_check": [
@@ -125,9 +168,21 @@
                     "Model",
                     "Manufacturer"
                 ],
-                "percentage_check": {
+                "total_number_nulls": {
+                    "num_of_nulls": "total num of nulls"
+                },
+                "total_error_percentage": {
                     "%_of_errors": "(errors)/(total entries)"
-                }
+                },
+                "total_value_nulls": {
+                    "num_of_val_errors": "total num of value errors"
+                },
+                "total_format_nulls": {
+                    "num_of_format_errors": "total num of format errors"
+                },
+                "total_number_errors": {
+                    "num_of_errors": "total num of errors"
+            }
             }
         ]
     },
@@ -406,12 +461,21 @@
                         "Zimbabwe"
                     ]
                 },
-                "number_of_nulls_check": {
+                "total_number_nulls": {
                     "num_of_nulls": "total num of nulls"
                 },
-                "percentage_check": {
+                "total_error_percentage": {
                     "%_of_errors": "(errors)/(total entries)"
-                }
+                },
+                "total_value_nulls": {
+                    "num_of_val_errors": "total num of value errors"
+                },
+                "total_format_nulls": {
+                    "num_of_format_errors": "total num of format errors"
+                },
+                "total_number_errors": {
+                    "num_of_errors": "total num of errors"
+            }
             }
         ]
     },
@@ -425,11 +489,39 @@
                         "Low to medium (10-20%)",
                         "Medium to high (20-40%)",
                         "High (40-80%)",
-                        "Extremely high (>80%)"
+                        "Extremely high (>80%)",
+                        "Total production",
+                        "Percent to total in category",
+                        "Total water footprint (m3) per ton of production (Mekonnen and Hoekstra 2011)",
+                        "Arid & low water use"
                     ],
                     "FREQ": "Annual",
                     "TIME_FORMAT": "Annual"
-                }
+                },
+                "null_check": [
+                    "YEAR",
+                    "OBS_VALUE",
+                    "CROP_LABEL",
+                    "FREQ",
+                    "INDICATOR",
+                    "TIME_FORMAT",
+                    "UNIT_MULT"
+                ],
+                "total_number_nulls": {
+                    "num_of_nulls": "total num of nulls"
+                },
+                "total_error_percentage": {
+                    "%_of_errors": "(errors)/(total entries)"
+                },
+                "total_value_nulls": {
+                    "num_of_val_errors": "total num of value errors"
+                },
+                "total_format_nulls": {
+                    "num_of_format_errors": "total num of format errors"
+                },
+                "total_number_errors": {
+                    "num_of_errors": "total num of errors"
+            }
             }
         ]
     }
