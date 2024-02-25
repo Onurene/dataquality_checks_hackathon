@@ -4,7 +4,6 @@ import json
 import matplotlib.pyplot as plt
 
 
-
 def null_check(df, column):
     # print(df[column])
     return df[column].isnull().sum()
@@ -17,22 +16,26 @@ def range_check(df, column, minimum, maximum):
 
 
 def total_error_percentage(df, errors):
-    return (errors / df.size) * 1000
+    return (errors / df.size) * 100
 
 
 def format_check(df, column, regex):
-    errors = 0
+    non_errors = 0
 
-    s = pd.Series(df[column])
-    wrong = list()
-    total_matches = s.str.match(rf'{regex}').sum()
+    s = pd.Series(df[column]).astype(str)
+    for string in s:
+        if bool(re.fullmatch(regex, string)):
+            non_errors += 1
 
-    for val in s.astype(str):
-        if not bool(re.match(regex, val)):
-            wrong.append(val)
-
-    # print(wrong[:10])
-    errors = len(s) - total_matches
+    # wrong = list()
+    # total_matches = s.str.match(rf'{regex}').sum()
+    #
+    # for val in s.astype(str):
+    #     if not bool(re.match(regex, val)):
+    #         wrong.append(val)
+    #
+    # # print(wrong[:10])
+    errors = len(s) - non_errors
     return errors
 
 
@@ -64,8 +67,6 @@ def run_quality_checks(dataset_index):
         config = json.loads(file.read())
 
         dataset_profile = config[dataset_index]
-
-        print(dataset_profile['dataset'])
 
         dataframe = pd.read_csv(dataset_profile['dataset'])
 
@@ -102,18 +103,25 @@ def run_quality_checks(dataset_index):
 
 
             elif check == "range_check":
-                # print(list(checks[keys[i]].keys())) #columns
-                # print(list(checks[keys[i]].values())) #ranges
+                # columns
                 if isinstance(checks[keys[i]], list):
-                    columns = list(checks[keys[i]].keys())
-                    ranges = list(checks[keys[i]].values())
+                    for item in checks[keys[i]]:
+                        for key, value in item.items():
+                            column = key
+                            range = value
+                            constraints = range.split('-')
+                            range_errors = range_check(dataframe, column, constraints[0], constraints[1])
+                            range_output[column] = (range_errors / dataframe.size) * 100
+
+
                 else:
                     columns = list(checks[check])
-                for i, column in enumerate(columns):
-                    constraints = ranges[i].split('-')
-                    # print(constraints[0], constraints[1])
-                    range_errors = range_check(dataframe, column, constraints[0], constraints[1])
-                    range_output[column] = (range_errors / dataframe.size )*100
+                    ranges = list(checks[check].values())
+                    for i, column in enumerate(columns):
+                        constraints = ranges[i].split('-')
+                        # print(constraints[0], constraints[1])
+                        range_errors = range_check(dataframe, column, constraints[0], constraints[1])
+                        range_output[column] = (range_errors / dataframe.size) * 100
 
 
 
@@ -124,10 +132,11 @@ def run_quality_checks(dataset_index):
                 columns = list(checks[check].keys())
                 regex = list(checks[check].values())
                 for i, column in enumerate(columns):
+                    print(column, regex[i])
                     format_errors = format_check(dataframe, column, regex[i])
                     errors += format_errors
                     total_format_errors += format_errors
-                    format_output[column] = (format_errors / dataframe.size )*100
+                    format_output[column] = (format_errors / dataframe.size) * 100
 
 
             elif check == "value_check":
@@ -137,7 +146,7 @@ def run_quality_checks(dataset_index):
                     value_errors = value_check(dataframe, column, values[i])
                     errors += value_errors
                     total_value_errors += value_errors
-                    value_output[column] = (value_errors / dataframe.size )*100
+                    value_output[column] = (value_errors / dataframe.size) * 100
 
 
             elif check == "total_null_errors":
@@ -151,17 +160,17 @@ def run_quality_checks(dataset_index):
 
             elif check == "total_number_errors":
                 print("Total errors: ", errors)
-                
+
         print("null", null_output)
         print("range", range_output)
         print("format", format_output)
         print("value", value_output)
 
 
-
-
 if __name__ == '__main__':
-    run_quality_checks(2)
+    for i in range(5):
+        run_quality_checks(i)
+        print("-"*100)
 
 # "Start Date": "^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/\\d{4} (0\\d|1[0-2]):([0-5]\\d)$",
 # "End Date": "^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/\\d{4} (0\\d|1[0-2]):([0-5]\\d)$",
