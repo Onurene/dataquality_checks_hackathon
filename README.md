@@ -6,6 +6,7 @@ The project aims at identifying data quality issues in the source dataset and pr
 2. Spark
 3. Databricks
 4. Visualization
+5. Tableau
 
 # Steps to run our project
 1. Create a databricks cluster on Azure/AWS
